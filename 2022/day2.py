@@ -15,19 +15,19 @@ def rock_paper_scissors_part1(theirs, mine):
     choice = ROCK
     if theirs == "C":
       result = WIN
-    if theirs == "A":
+    elif theirs == "A":
       result = DRAW
   elif mine == "Y":
     choice = PAPER
     if theirs == "A":
       result = WIN
-    if theirs == "B":
+    elif theirs == "B":
       result = DRAW
   elif mine == "Z":
     choice = SCISSORS
     if theirs == "B":
       result = WIN
-    if theirs == "C":
+    elif theirs == "C":
       result = DRAW
   return choice + result
 

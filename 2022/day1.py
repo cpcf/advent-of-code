@@ -1,4 +1,6 @@
-input = open("input.txt", "r").read().splitlines()
+import sys
+
+input = open(sys.argv[1], "r").read().splitlines()
 
 elf = []
 totals = []

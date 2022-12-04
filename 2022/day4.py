@@ -1,3 +1,5 @@
+import sys
+
 def build_ranges(line):
   first_elf, second_elf = line.split(",")
   first_elf_low, first_elf_high = first_elf.split("-")
@@ -6,7 +8,7 @@ def build_ranges(line):
   second_elf_range = range(int(second_elf_low), int(second_elf_high) + 1)
   return first_elf_range, second_elf_range
 
-input = open("input.txt", "r").read().splitlines()
+input = open(sys.argv[1], "r").read().splitlines()
 
 total1 = 0
 total2 = 0

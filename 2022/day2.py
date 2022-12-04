@@ -1,3 +1,5 @@
+import sys
+
 ROCK = 1
 PAPER = 2
 SCISSORS = 3
@@ -61,15 +63,15 @@ def rock_paper_scissors_part2(theirs, mine):
       choice = ROCK
   return choice + result
 
-input = open("input.txt", "r").read().splitlines()
+input = open(sys.argv[1], "r").read().splitlines()
 
 score_part1 = 0
 score_part2 = 0
 
 for line in input:
   theirs, mine = line.split()
-  score_part1 = score_part1 + rock_paper_scissors_part1(theirs, mine)
-  score_part2 = score_part2 + rock_paper_scissors_part2(theirs, mine)
+  score_part1 += rock_paper_scissors_part1(theirs, mine)
+  score_part2 += rock_paper_scissors_part2(theirs, mine)
 
 print("Part1: " + str(score_part1))
 print("Part2: " + str(score_part2))

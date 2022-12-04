@@ -8,6 +8,12 @@ def build_ranges(line):
   second_elf_range = range(int(second_elf_low), int(second_elf_high) + 1)
   return first_elf_range, second_elf_range
 
+def contains(subset, container):
+  return subset[0] in container and subset[-1] in container
+
+def is_either_range_subset(first_range, second_range):
+  return contains(first_range, second_range) or contains(second_range, first_range)
+
 input = open(sys.argv[1], "r").read().splitlines()
 
 total1 = 0
@@ -15,7 +21,7 @@ total2 = 0
 
 for line in input:
   first_elf_range, second_elf_range = build_ranges(line)
-  if (first_elf_range[0] in second_elf_range and first_elf_range[-1] in second_elf_range) or (second_elf_range[0] in first_elf_range and second_elf_range[-1] in first_elf_range):
+  if is_either_range_subset(first_elf_range, second_elf_range):
     total1 += 1
   if len(range(max(first_elf_range[0], second_elf_range[0]), min(first_elf_range[-1], second_elf_range[-1])+1)) > 0:
     total2 += 1

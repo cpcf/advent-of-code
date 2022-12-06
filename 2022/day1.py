@@ -6,11 +6,11 @@ elf = []
 totals = []
 
 for line in input:
-  if not line:
-    totals.append(sum(calories for calories in elf))
-    elf = []
-  else:
-    elf.append(int(line))
+    if not line:
+        totals.append(sum(calories for calories in elf))
+        elf = []
+    else:
+        elf.append(int(line))
 
 totals.append(sum(calories for calories in elf))
 totals.sort()

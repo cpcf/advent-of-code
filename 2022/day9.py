@@ -15,7 +15,7 @@ def calculate_rope_moves(knots, input):
     for line in input:
         direction, count = line.split()
         dx, dy = MOVEMENTS[direction]
-        for i in range(int(count)):
+        for _ in range(int(count)):
             head[0] += dx
             head[1] += dy
             last_knot = head
@@ -31,7 +31,6 @@ def calculate_rope_moves(knots, input):
 
 
 input = open(sys.argv[1], "r").read().splitlines()
-
 
 one_knot = [[0, 0]]
 print("Part1: " + str(calculate_rope_moves(one_knot, input)))

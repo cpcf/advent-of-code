@@ -14,20 +14,21 @@ def update_pixels(cycles, x, pixels, _):
     return pixels, None
 
 
-def cpu(per_cycle_action, input, y, z):
-    x = 1
-    cycles = 0
-    for line in input:
-        instruction = line.split()
-        if len(instruction) == 1:
-            cycles += 1
-            y, z = per_cycle_action(cycles, x, y, z)
-        else:
-            cycles += 1
-            y, z = per_cycle_action(cycles, x, y, z)
-            cycles += 1
-            y, z = per_cycle_action(cycles, x, y, z)
-            x += int(instruction[1])
+def cycle(per_cycle_action, cycles, x, y, z):
+    cycles += 1
+    y, z = per_cycle_action(cycles, x, y, z)
+    return cycles, y, z
+
+
+def cpu(per_cycle_action, instructions, y, z):
+    cycles, x = 0, 1
+    for instruction in instructions:
+        if instruction == 'noop':
+            cycles, y, z = cycle(per_cycle_action, cycles, x, y, z)
+        else:  # only other instruction is addx
+            cycles, y, z = cycle(per_cycle_action, cycles, x, y, z)
+            cycles, y, z = cycle(per_cycle_action, cycles, x, y, z)
+            x += int(instruction.split()[1])
     return y
 
 

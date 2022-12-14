@@ -1,7 +1,7 @@
 import sys
 import ast
 
-LONGER = {
+ORDER = {
     'incorrect': 0,
     'correct': 1,
     'neither': 2
@@ -15,11 +15,11 @@ def convert_pairs(packets):
 
 def compare_ints(left, right):
     if left < right:
-        return LONGER['correct']
+        return ORDER['correct']
     if left > right:
-        return LONGER['incorrect']
+        return ORDER['incorrect']
     if left == right:
-        return LONGER['neither']
+        return ORDER['neither']
 
 
 def are_lists_in_correct_order(left, right):
@@ -39,13 +39,13 @@ def compare_list(left, right):
     i = 0
     while(True):
         if i == left_length == right_length:
-            return LONGER['neither']
+            return ORDER['neither']
         elif i == left_length:
-            return LONGER['correct']
+            return ORDER['correct']
         elif i == right_length:
-            return LONGER['incorrect']
+            return ORDER['incorrect']
         correct_order = are_lists_in_correct_order(left[i], right[i])
-        if correct_order is not LONGER['neither']:
+        if correct_order is not ORDER['neither']:
             return correct_order
         i += 1
 
@@ -55,7 +55,7 @@ def packet_sort(packets):
     reversed_range = list(reversed(packets_length))
     for i in packets_length:
         for j in range(0, reversed_range[i]):
-            if compare_list(packets[j], packets[j + 1]) == LONGER['incorrect']:
+            if compare_list(packets[j], packets[j + 1]) == ORDER['incorrect']:
                 packets[j], packets[j + 1] = packets[j + 1], packets[j]
     return packets
 
@@ -65,7 +65,7 @@ def part1(input):
     packet_pairs = [[pair for pair in convert_pairs(chunk)] for chunk in data]
     answer = 0
     for count, packets in enumerate(packet_pairs):
-        if compare_list(packets[0], packets[1]) == LONGER['correct']:
+        if compare_list(packets[0], packets[1]) == ORDER['correct']:
             answer += count + 1
     return answer
 
